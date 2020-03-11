@@ -14,7 +14,7 @@ Pod::Spec.new do |spec|
   spec.homepage     = "https://github.com/eonist/FileWatcher"
   spec.license      = "MIT"
   spec.author       = { "eonist" => "30n1st@gmail.com" }
-  spec.platform     = :osx, "10.12"
+  spec.platform     = :osx, "10.10"
   spec.source       = { :git => "https://github.com/eonist/FileWatcher.git", :tag => "#{spec.version}" }
   spec.source_files  = ".", "**/*.{h,m,swift}"
   spec.exclude_files = ["FileWatcherExample", "Exclude"]
