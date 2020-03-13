@@ -33,6 +33,8 @@ extension FileWatcherEvent {
     var removed: Bool { return (flags & FSEventStreamEventFlags(kFSEventStreamEventFlagItemRemoved)) != 0 }
     var renamed: Bool { return (flags & FSEventStreamEventFlags(kFSEventStreamEventFlagItemRenamed)) != 0 }
     var modified: Bool { return (flags & FSEventStreamEventFlags(kFSEventStreamEventFlagItemModified)) != 0 }
+    var none: Bool { return (flags & FSEventStreamEventFlags(kFSEventStreamEventFlagNone)) != 0 }
+    var xattrMod: Bool { return (flags & FSEventStreamEventFlags(kFSEventStreamEventFlagItemXattrMod)) != 0 }
 }
 /**
  * Convenince
@@ -43,6 +45,7 @@ extension FileWatcherEvent {
     public var fileRemoved: Bool { return fileChange && removed }
     public var fileRenamed: Bool { return fileChange && renamed }
     public var fileModified: Bool { return fileChange && modified }
+    public var fileAccessed: Bool { return fileChange && xattrMod }
     /*Directory*/
     public var dirCreated: Bool { return dirChange && created }
     public var dirRemoved: Bool { return dirChange && removed }
@@ -61,6 +64,7 @@ extension FileWatcherEvent {
         else if self.created { result += " created" }
         else if self.renamed { result += " renamed" }
         else if self.modified { result += " modified" }
+        else if self.xattrMod { result += " accessed" }
         return result
     }
 }
